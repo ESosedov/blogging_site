@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(5);
+        $posts = Post::with('category', 'tags')->paginate(5);
 
         return view('admin.posts.index', compact('posts'));
 
@@ -33,15 +33,15 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::pluck('title','id')->all();
-        $tags = Tag::pluck('title','id')->all();
+        $categories = Category::pluck('title', 'id')->all();
+        $tags = Tag::pluck('title', 'id')->all();
         return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(StorePost $request)
@@ -58,49 +58,50 @@ class PostController extends Controller
     }
 
 
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $post = Post::find($id);
-        $categories = Category::pluck('title','id')->all();
-        $tags = Tag::pluck('title','id')->all();
+        $categories = Category::pluck('title', 'id')->all();
+        $tags = Tag::pluck('title', 'id')->all();
 
 
-        return view('admin.posts.edit', compact('post','categories','tags'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(StorePost $request, $id)
     {
 
-        $post= Post::find($id);
+        $post = Post::find($id);
         $data = $request->all();
 
+        if ($file = Post::uploadImage($request, $post->thumbnail)) {
+            $data['thumbnail'] = $file;
+        }
 
-        $data['thumbnail'] = Post::uploadImage($request, $post->thumbnail);
         $post->update($data);
         $post->tags()->sync($request->tags);
 
 
-        return redirect()->route('posts.index')->with('success',"Пост был успешно изменен.");
+        return redirect()->route('posts.index')->with('success', "Пост был успешно изменен.");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -109,7 +110,7 @@ class PostController extends Controller
         $post->tags()->sync([]);
         Storage::delete($post->thumbnail);
         $post->delete();
-        return redirect()->route('posts.index')->with('success',"Пост '$post->title' был успешно удален .");
+        return redirect()->route('posts.index')->with('success', "Пост '$post->title' был успешно удален .");
 
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Blank Page</title>
+    <title>ХвостатыеNews</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -11,14 +11,14 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/css/admin.css') }}">
 </head>
 <body class="hold-transition sidebar-mini">
-<!-- Site wrapper -->
+
 
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            <a class="nav-link" data-widget="pushmenu" href="#" data-enable-remember="true" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="../../index3.html" class="nav-link">Home</a>
@@ -311,6 +311,22 @@
             $(this).addClass('active');
             $(this).closest('.has-treeview').addClass('menu-open');
         }
+    });
+</script>
+{{--<script src="{{ asset('/assets/admin/ckeditor5/build/ckeditor.js') }}"></script>--}}
+{{--<script src="{{ asset('/assets/admin/ckfinder/ckfinder.js') }}"></script>--}}
+{{--<script type="text/javascript">--}}
+{{--    ClassicEditor--}}
+{{--        .create( document.querySelector( '#content' ), {--}}
+
+{{--        } )--}}
+{{--        .catch( function( error ) {--}}
+{{--            console.error( error );--}}
+{{--        } );--}}
+{{--</script>--}}
+<script>
+    $(function () {
+        bsCustomFileInput.init();
     });
 </script>
 </body>

@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategory;
-
-use App\Models\Tag;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::paginate(5);
+        $categories = Category::paginate(5);
 
-        return view('admin.tags.index', compact('tags'));
+        return view('admin.categories.index', compact('categories'));
 
     }
 
@@ -30,7 +29,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('admin.tags.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -42,9 +41,9 @@ class TagController extends Controller
     public function store(StoreCategory $request)
     {
 
-        Tag::create($request->all());
-        $request->session()->flash('success', "Тег '$request->title' был успешно добавлен.");
-        return redirect()->route('tags.index');
+        Category::create($request->all());
+        $request->session()->flash('success', "Категория '$request->title' была успешно добавлена.");
+        return redirect()->route('categories.index');
 
     }
 
@@ -58,8 +57,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        $tag = Tag::find($id);
-        return view('admin.tags.edit', compact('tag'));
+        $category = Category::find($id);
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -71,12 +70,12 @@ class TagController extends Controller
      */
     public function update(StoreCategory $request, $id)
     {
-        $tag = Tag::find($id);
-        $oldTitle = $tag->title;
-        $tag->slug = null; /* для обновления слага*/
-        $tag->update($request->all());
+        $category = Category::find($id);
+        $oldTitle = $category->title;
+        $category->slug = null; /* для обновления слага*/
+        $category->update($request->all());
 
-        return redirect()->route('tags.index')->with('success',"Тег '$oldTitle' был успешно переименован в '$tag->title'.");
+        return redirect()->route('categories.index')->with('success',"Категория '$oldTitle' была успешно переименована в '$category->title'.");
     }
 
     /**
@@ -87,13 +86,12 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        $tag = Tag::find($id);
-
-        if($tag->posts->count()){
-            return redirect()->route('tags.index')->with('error',"Ошибка, у тега '$tag->title' есть связанные посты.");
+        $category = Category::find($id);
+        if($category->posts->count()){
+            return redirect()->route('categories.index')->with('error',"Ошибка, у категории '$category->title' есть связанные посты.");
         }
-        $tag->delete();
-        return redirect()->route('tags.index')->with('success',"Тег '$tag->title' был успешно удален .");
+        $category->delete();
+        return redirect()->route('categories.index')->with('success',"Категория '$category->title' была успешно удалена .");
 
     }
 }
