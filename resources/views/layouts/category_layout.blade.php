@@ -15,26 +15,27 @@
     <!-- Custom styles for this template -->
 </head>
 <body>
-
 <!-- Navigation -->
 
 @include('layouts.navbar')
 <div class="container">
+
     <header>
         <a href="index.html"><img src="{{ asset('assets/front/images/logo.png')}}"></a>
     </header>
-    @yield('slider')
+
+    @yield('page-title')
+
     <section>
         <div class="row">
-            <div class="col-md-8">
-
-                @yield('content')
-
-            </div>
             <div class="col-md-4 sidebar-gutter">
                 @include('layouts.sidebar')
             </div>
+            <div class="col-md-8">
+                @yield('content')
+            </div>
         </div>
+
 </section>
 </div><!-- /.container -->
 
