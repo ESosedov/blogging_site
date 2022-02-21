@@ -42,19 +42,23 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Цитата</label>
-                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="2" id="description"
+                                    <textarea name="description"
+                                              class="form-control @error('description') is-invalid @enderror" rows="2"
+                                              id="description"
                                               placeholder="Цитата..."></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="content">Контент</label>
-                                    <textarea name="content" class="form-control @error('content') is-invalid @enderror" rows="3" id="content"
+                                    <textarea name="content" class="form-control @error('content') is-invalid @enderror"
+                                              rows="3" id="content"
                                               placeholder="Контент..."></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="category_id">Категория</label>
-                                    <select class="form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id">
+                                    <select class="form-control @error('category_id') is-invalid @enderror"
+                                            id="category_id" name="category_id">
                                         <option>Выберите категорию</option>
                                         @foreach($categories as $id => $title)
                                             <option value={{  $id }}>{{ $title }}</option>
@@ -76,18 +80,20 @@
                                 </div>
 
 
-                                    <div class="form-group">
-                                        <label for="thumbnail">Изображение</label>
-                                        <div class="input-group">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input @error('thumbnail') is-invalid @enderror" name="thumbnail"
-                                                       id="thumbnail">
-                                                <label class="custom-file-label" for="thumbnail">"Выберите
-                                                    изображение"</label>
-                                            </div>
+                                <div class="form-group">
+                                    <label for="thumbnail">Изображение</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file"
+                                                   class="custom-file-input @error('thumbnail') is-invalid @enderror"
+                                                   name="thumbnail"
+                                                   id="thumbnail">
+                                            <label class="custom-file-label" for="thumbnail">"Выберите
+                                                изображение"</label>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
                             <!-- /.card-body -->
 

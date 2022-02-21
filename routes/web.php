@@ -17,15 +17,20 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/article/{slug}', 'HomeController@show')->name('posts.single');
 Route::get('/category/{slug}', 'CategoryController@index')->name('categories.single');
 Route::get('/tag/{slug}', 'TagController@index')->name('tags.single');
-Route::get('/search', 'searchController@index')->name('search');
+Route::get('/search', 'SearchController@index')->name('search');
+Route::get('/photography', 'PhotographyController@index')->name('foto');
+Route::match(['get', 'post'], '/contact', 'ContactController@send')->name('contact');
+Route::get('/about', function () {
+    return view('about.about');
+})->name('about');
 
-Route::group(['prefix'=>'admin','namespace'=>'Admin', 'middleware'=>'admin'], function(){
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
     Route::get('/', 'MainController@index')->name('admin.index');
     Route::resource('/categories', 'CategoryController');
     Route::resource('/tags', 'TagController');
     Route::resource('/posts', 'PostController');
 });
-Route::group(['middleware'=>'guest'],function(){
+Route::group(['middleware' => 'guest'], function () {
     Route::get('/register', 'UserController@create')->name('register.create');
     Route::post('/register', 'UserController@store')->name('register.store');
     Route::get('/login', 'UserController@loginForm')->name('login.create');
@@ -33,3 +38,8 @@ Route::group(['middleware'=>'guest'],function(){
 });
 
 Route::get('/logout', 'UserController@logout')->name('logout')->middleware('auth');
+
+
+
+
+

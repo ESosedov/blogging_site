@@ -15,50 +15,49 @@
     <!-- Custom styles for this template -->
 </head>
 <body>
+<div id="colorlib-page">
+    <!-- Navigation -->
+    @include('layouts.navbar')
+    <div class="container">
+        <header>
+            <a href="index.html"><img src="{{ asset('assets/front/images/logo.png')}}"></a>
+        </header>
+        @yield('slider')
+        <section>
+            <div class="row">
+                <div class="col-md-8">
 
-<!-- Navigation -->
+                    @yield('content')
 
-@include('layouts.navbar')
-<div class="container">
-    <header>
-        <a href="index.html"><img src="{{ asset('assets/front/images/logo.png')}}"></a>
-    </header>
-    @yield('slider')
-    <section>
-        <div class="row">
-            <div class="col-md-8">
-
-                @yield('content')
-
+                </div>
+                <div class="col-md-4 sidebar-gutter">
+                    @include('layouts.sidebar')
+                </div>
             </div>
-            <div class="col-md-4 sidebar-gutter">
-                @include('layouts.sidebar')
-            </div>
+        </section>
+    </div><!-- /.container -->
+
+    <footer class="footer">
+
+        <div class="footer-socials">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-google-plus"></i></a>
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+            <a href="#"><i class="fa fa-reddit"></i></a>
         </div>
-</section>
-</div><!-- /.container -->
 
-<footer class="footer">
+        <div class="footer-bottom">
+            <i class="fa fa-copyright"></i> Copyright 2015. All rights reserved.<br>
+            Theme made by <a href="http://www.moozthemes.com">MOOZ Themes</a>
+        </div>
+    </footer>
 
-    <div class="footer-socials">
-        <a href="#"><i class="fa fa-facebook"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-instagram"></i></a>
-        <a href="#"><i class="fa fa-google-plus"></i></a>
-        <a href="#"><i class="fa fa-dribbble"></i></a>
-        <a href="#"><i class="fa fa-reddit"></i></a>
-    </div>
-
-    <div class="footer-bottom">
-        <i class="fa fa-copyright"></i> Copyright 2015. All rights reserved.<br>
-        Theme made by <a href="http://www.moozthemes.com">MOOZ Themes</a>
-    </div>
-</footer>
-
-<!-- Bootstrap core JavaScript
-    ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="{{ asset('/assets/front/js/front.js') }}"></script>
+    <!-- Bootstrap core JavaScript
+        ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{{ asset('/assets/front/js/front.js') }}"></script>
 </body>
 </html>

@@ -37,7 +37,8 @@
                                 <div class="form-group">
                                     <label for="title">Название</label>
                                     <input type="text" name="title"
-                                           class="form-control @error('title') is-invalid @enderror" id="title" value="{{ $category->title }}">
+                                           class="form-control @error('title') is-invalid @enderror" id="title"
+                                           value="{{ $category->title }}">
                                 </div>
                             </div>
                             <!-- /.card-body -->

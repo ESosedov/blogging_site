@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 
 class searchController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $request->validate([
-            's'=>'required'
+            's' => 'required'
         ]);
 
-        $s= $request->s;
+        $s = $request->s;
         $posts = Post::like($s)->with('category')->paginate(2);
-        return view('home.search', compact('posts', 's'));
+        return view('home.search2', compact('posts', 's'));
     }
 }

@@ -36,7 +36,7 @@
             </div>
         </div>
 
-</section>
+    </section>
 </div><!-- /.container -->
 
 <footer class="footer">

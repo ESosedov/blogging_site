@@ -35,7 +35,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCategory $request)
@@ -48,11 +48,10 @@ class CategoryController extends Controller
     }
 
 
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -64,8 +63,8 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(StoreCategory $request, $id)
@@ -75,23 +74,23 @@ class CategoryController extends Controller
         $category->slug = null; /* для обновления слага*/
         $category->update($request->all());
 
-        return redirect()->route('categories.index')->with('success',"Категория '$oldTitle' была успешно переименована в '$category->title'.");
+        return redirect()->route('categories.index')->with('success', "Категория '$oldTitle' была успешно переименована в '$category->title'.");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $category = Category::find($id);
-        if($category->posts->count()){
-            return redirect()->route('categories.index')->with('error',"Ошибка, у категории '$category->title' есть связанные посты.");
+        if ($category->posts->count()) {
+            return redirect()->route('categories.index')->with('error', "Ошибка, у категории '$category->title' есть связанные посты.");
         }
         $category->delete();
-        return redirect()->route('categories.index')->with('success',"Категория '$category->title' была успешно удалена .");
+        return redirect()->route('categories.index')->with('success', "Категория '$category->title' была успешно удалена .");
 
     }
 }

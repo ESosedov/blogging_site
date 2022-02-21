@@ -13,3 +13,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/ckfinder/
+/public/assets/admin/ckeditor5/
+/public/assets/admin/ckfinder/

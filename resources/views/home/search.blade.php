@@ -42,9 +42,9 @@
                 </div>
             @endforeach
         @else
-<div>
-    <p>По Вашему запросу ничего не найдено...</p>
-</div>
+            <div>
+                <p>По Вашему запросу ничего не найдено...</p>
+            </div>
         @endif
         {{ $posts->appends(['s'=>request()->s])->links() }}
     </article>

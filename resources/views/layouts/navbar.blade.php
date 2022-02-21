@@ -18,7 +18,7 @@
             </ul>
 
             <form class="nav navbar-nav navbar-right " method="get" action="{{ route('search') }}">
-                <input name="s" id="s" class="@error('s') is-invalid @enderror"  type="text" placeholder="..." required>
+                <input name="s" id="s" class="@error('s') is-invalid @enderror" type="text" placeholder="..." required>
                 <button class="btn btn-outline-success" type="submit">Поиск</button>
             </form>
 

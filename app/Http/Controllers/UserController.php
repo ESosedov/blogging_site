@@ -22,36 +22,41 @@ class UserController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-        'email'=>$request->email,
-            'password'=>bcrypt($request->password)
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
         ]);
 
-        session()->flash('success','Вы успешно зарегистрированы');
+        session()->flash('success', 'Вы успешно зарегистрированы');
         Auth::login($user);
         return redirect()->home();
     }
 
-    public function loginForm(){
+    public function loginForm()
+    {
 
         return view('user.login');
     }
-    public function login(StoreLogin $request){
 
-        if(Auth::attempt([
-            'email'=>$request->email,
-            'password'=>$request->password
-        ])){
-            session()->flash('success','Вы успешно авторизованны.');
-            if(Auth::user()->is_admin){
+    public function login(StoreLogin $request)
+    {
+
+        if (Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password
+        ])) {
+            session()->flash('success', 'Вы успешно авторизованны.');
+            if (Auth::user()->is_admin) {
                 return redirect()->route('admin.index');
-            }else{
+            } else {
                 return redirect()->home();
             }
         }
         return redirect()->back()->with('error', 'Неверный логин или пароль');
     }
-    public function logout(){
+
+    public function logout()
+    {
         Auth::logout();;
-        return redirect()->route('login.create');
+        return redirect()->home();
     }
 }

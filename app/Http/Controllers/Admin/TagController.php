@@ -36,7 +36,7 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCategory $request)
@@ -49,11 +49,10 @@ class TagController extends Controller
     }
 
 
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -65,8 +64,8 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(StoreCategory $request, $id)
@@ -76,24 +75,24 @@ class TagController extends Controller
         $tag->slug = null; /* для обновления слага*/
         $tag->update($request->all());
 
-        return redirect()->route('tags.index')->with('success',"Тег '$oldTitle' был успешно переименован в '$tag->title'.");
+        return redirect()->route('tags.index')->with('success', "Тег '$oldTitle' был успешно переименован в '$tag->title'.");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $tag = Tag::find($id);
 
-        if($tag->posts->count()){
-            return redirect()->route('tags.index')->with('error',"Ошибка, у тега '$tag->title' есть связанные посты.");
+        if ($tag->posts->count()) {
+            return redirect()->route('tags.index')->with('error', "Ошибка, у тега '$tag->title' есть связанные посты.");
         }
         $tag->delete();
-        return redirect()->route('tags.index')->with('success',"Тег '$tag->title' был успешно удален .");
+        return redirect()->route('tags.index')->with('success', "Тег '$tag->title' был успешно удален .");
 
     }
 }

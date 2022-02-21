@@ -11,6 +11,6 @@ class CategoryController extends Controller
     {
         $category = Category::where('slug', $slug)->firstOrFail();
         $posts = $category->posts()->orderBy('id', 'desc')->paginate(3);
-        return view('categories.show', compact('category','posts'));
+        return view('categories.show2', compact('category', 'posts'));
     }
 }

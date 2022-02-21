@@ -11,7 +11,7 @@ class HomeController extends Controller
     {
 
         $posts = Post::with('category')->orderBy('id', 'desc')->paginate(3);
-        return view('home.index', compact('posts'));
+        return view('home.index2', compact('posts'));
     }
 
     public function show($slug)
@@ -21,6 +21,6 @@ class HomeController extends Controller
         $post->update();
 
 
-        return view('home.show', compact('post'));
+        return view('home.show2', compact('post'));
     }
 }
