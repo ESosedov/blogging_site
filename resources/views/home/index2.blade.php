@@ -42,10 +42,8 @@
                     </h3>
                     <p class="mb-4">{!! $post->description !!}</p>
                     <div class="author mb-4 d-flex align-items-center">
-
-                        <div class="ml-3 info">
-                            <span>Written by</span>
-                            <h3><a href="#">Хозяин чудовищ</a>, <span>{{ $post->getPostDate() }}</span></h3>
+                        <div class="info">
+                            <h3><span>{{ $post->getPostDate() }}</span></h3>
                         </div>
                     </div>
                     <div class="meta-wrap align-items-center">
@@ -53,7 +51,7 @@
                             <p class="meta">
                                 <span><i class="icon-heart"></i>3</span>
                                 <span><i class="icon-eye"></i>{{ $post->views }}</span>
-                                <span><i class="icon-comment"></i>5</span>
+                                <span><i class="icon-comment"></i>{{ $post->comments->count() }}</span>
                             </p>
                         </div>
                         <div class="half">

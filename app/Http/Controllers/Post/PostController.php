@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Post;
 
+use App\Http\Controllers\Controller;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class PostController extends Controller
 {
     public function index()
     {

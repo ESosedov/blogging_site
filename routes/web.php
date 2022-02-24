@@ -13,8 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/article/{slug}', 'HomeController@show')->name('posts.single');
+
+Route::group(['namespace' => 'Post'], function () {
+    Route::get('/', 'PostController@index')->name('home');
+    Route::get('/post/{slug}', 'PostController@show')->name('posts.single');
+    Route::group(['namespace' => 'Comment', 'prefix' => '/post/{slug}/comments'], function () {
+        Route::post('/', 'CommentController@store')->name('posts.comments.store');
+    });
+});
+
+
 Route::get('/category/{slug}', 'CategoryController@index')->name('categories.single');
 Route::get('/tag/{slug}', 'TagController@index')->name('tags.single');
 Route::get('/search', 'SearchController@index')->name('search');
@@ -23,6 +31,7 @@ Route::match(['get', 'post'], '/contact', 'ContactController@send')->name('conta
 Route::get('/about', function () {
     return view('about.about');
 })->name('about');
+
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
     Route::get('/', 'MainController@index')->name('admin.index');
