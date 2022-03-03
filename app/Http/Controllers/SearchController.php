@@ -10,11 +10,11 @@ class searchController extends Controller
     public function index(Request $request)
     {
         $request->validate([
-            's' => 'required'
+            'search' => 'required'
         ]);
 
-        $s = $request->s;
-        $posts = Post::like($s)->with('category')->paginate(2);
-        return view('home.search2', compact('posts', 's'));
+        $search = $request->search;
+        $posts = Post::like($search)->with('category')->paginate(3);
+        return view('home.search2', compact('posts', 'search'));
     }
 }

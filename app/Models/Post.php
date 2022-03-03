@@ -82,4 +82,10 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+
+    public function getPostDateByMouthYear()
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('F Y');
+    }
 }

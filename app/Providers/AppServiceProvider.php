@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+        Carbon::setLocale('ru_RU');
 
 
         view()->composer(['layouts.sidebar', 'layouts.sidebar2', 'layouts.footer'], function ($view) {
@@ -44,6 +46,11 @@ class AppServiceProvider extends ServiceProvider
             $view->with('cats', $cats);
 
             $view->with('allTags', Tag::get()->all());
+
+            $archivePosts = Post::orderBy('created_at', 'desc')->get();
+//            $archivePosts->getPostDateByMouthYear();
+
+            $view->with('archivePosts', $archivePosts );
         });
     }
 }

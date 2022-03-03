@@ -32,9 +32,8 @@
                     <div class="meta-wrap align-items-center">
                         <div class="half order-md-last">
                             <p class="meta">
-                                <span><i class="icon-heart"></i>3</span>
                                 <span><i class="icon-eye"></i>{{ $post->views }}</span>
-                                <span><i class="icon-comment"></i>5</span>
+                                <span><i class="icon-comment"></i>{{ $post->comments->count() }}</span>
                             </p>
                         </div>
                         <div class="half">

@@ -17,8 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Post'], function () {
     Route::get('/', 'PostController@index')->name('home');
     Route::get('/post/{slug}', 'PostController@show')->name('posts.single');
-    Route::group(['namespace' => 'Comment', 'prefix' => '/post/{slug}/comments'], function () {
-        Route::post('/', 'CommentController@store')->name('posts.comments.store');
+    Route::group(['namespace' => 'Comment', 'prefix' => '/post/{slug}'], function () {
+        Route::resource('/comments', 'CommentController');
+    });
+    Route::group(['namespace' => 'Like', 'prefix' => '/post/{slug}'], function () {
+        Route::resource('/likes', 'LikeController');
     });
 });
 

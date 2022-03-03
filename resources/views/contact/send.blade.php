@@ -9,17 +9,15 @@
                 </div>
                 <div class="w-100"></div>
                 <div class="col-md-3">
-                    <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                    <p><span>Адресс:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
                 </div>
                 <div class="col-md-3">
-                    <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                    <p><span>Телефон:</span> <a href="tel://1234567920">+123 456 </a></p>
                 </div>
                 <div class="col-md-3">
                     <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
                 </div>
-                <div class="col-md-3">
-                    <p><span>Website</span> <a href="#">yoursite.com</a></p>
-                </div>
+
             </div>
             <div class="row block-9">
                 <div class="col-md-6 offset-md-3 order-md-last pr-md-5">

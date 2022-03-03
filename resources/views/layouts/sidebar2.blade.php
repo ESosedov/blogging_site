@@ -3,7 +3,7 @@
         <form action="{{ route('search') }}" class="search-form">
             <div class="form-group">
                 <span class="icon icon-search"></span>
-                <input name="s" type="text" class="form-control @error('s') is-invalid @enderror" placeholder="поиск.."
+                <input name="search" type="text" class="form-control @error('search') is-invalid @enderror" placeholder="поиск.."
                        required>
             </div>
         </form>
@@ -59,23 +59,11 @@
         </form>
     </div>
 
-    <div class="sidebar-box ftco-animate">
-        <h3 class="sidebar-heading">Archives</h3>
-        <ul class="categories">
-            <li><a href="#">October 2018 <span>(10)</span></a></li>
-            <li><a href="#">September 2018 <span>(6)</span></a></li>
-            <li><a href="#">August 2018 <span>(8)</span></a></li>
-            <li><a href="#">July 2018 <span>(2)</span></a></li>
-            <li><a href="#">June 2018 <span>(7)</span></a></li>
-            <li><a href="#">May 2018 <span>(5)</span></a></li>
-        </ul>
-    </div>
-
 
     <div class="sidebar-box ftco-animate">
         <h3 class="sidebar-heading">Paragraph</h3>
         <p>
-            Здесь можно что-т дописать или бахнуть рекламу
+            Здесь можно что-то дописать или рекламу
         </p>
     </div>
 </div><!-- END COL -->

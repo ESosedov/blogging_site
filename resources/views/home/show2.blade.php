@@ -22,7 +22,6 @@
             </div>
         @endif
         <div class="about-author d-flex px-4 bg-light">
-
             <div class="bio mr-5">
                 <div>
                     <span class="icon-calendar"></span> {{ $post->getPostDate() }} /
@@ -31,7 +30,6 @@
                     <span class="icon-pages"></span> {{ $post->category->title }}
 
                 </div>
-
             </div>
         </div>
 
@@ -43,14 +41,23 @@
                     @foreach($post->comments as $comment)
                         <li class="comment">
                             <div class="vcard bio">
-
                             </div>
                             <div class="comment-body">
                                 <h3>{{ $comment->user->name }}</h3>
                                 <div class="meta">{{ $comment->CommentDate }}</div>
                                 <p>{{ $comment->body }}</p>
-
+                                @auth()
+                                <form action="{{ route('comments.destroy', ['slug'=>$post->slug, 'comment'=>$comment->id]) }}"
+                                      class="" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="border-0 bg-transparent">
+                                        <span class="icon-remove"></span>
+                                        <span>удалить комментарий</span>
+                                    </button>
+                                </form>
                             </div>
+                            @endauth
                         </li>
                     @endforeach
                 </ul>
@@ -61,13 +68,17 @@
             @auth()
                 <div class="comment-form-wrap pt-5">
                     <h5 class="mb-5">Оставить комментарий</h5>
-                    <form action="{{ route('posts.comments.store', ['slug'=>$post->slug]) }}"
+                    <form action="{{ route('comments.store', ['slug'=>$post->slug]) }}"
                           class="p-3 p-md-5 bg-light" method="post">
                         @csrf
                         <input type="hidden" name="post_id" value="{{ $post->id }}">
                         <div class="form-group">
                             <label for="body">Сообщение</label>
-                            <textarea name="body" id="body" cols="30" rows="3" class="form-control"></textarea>
+                            <textarea name="body" id="body" cols="30" rows="3"
+                                      class="form-control @error('body') is-invalid @enderror"></textarea>
+                            @error('body')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Отправить" class="btn py-3 px-4 btn-primary">
@@ -77,8 +88,9 @@
                 </div>
             @endauth
             @guest()
-                <div class="comment-form-wrap pt-5">
-                    <h3 class="mb-5">Только зарегистрированные пользователи могут оставлять комментарии</h3>
+                <div class="comment-form-wrap pt-5 text-center">
+                    <h5>Только зарегистрированные пользователи могут оставлять комментарии.</h5>
+                    <a href="{{ route('login.create') }}">Войти</a>
                 </div>
             @endguest
         </div>

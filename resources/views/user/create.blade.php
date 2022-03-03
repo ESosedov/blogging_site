@@ -18,35 +18,45 @@
             <b>Регистрация</b>
         </div>
         <div class="card-body">
-            @include('admin.layouts.alerts')
+
 
             <form action="{{ route('register.store') }}" method="post">
                 @csrf
                 <div class="input-group mb-3">
-                    <input type="text" name="name" class="form-control" placeholder="Ваше имя"
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Ваше имя"
                            value="{{ old('name') }}">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
                         </div>
                     </div>
+                    @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="input-group mb-3">
-                    <input type="email" name="email" class="form-control" placeholder="Ваш Email"
+                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Ваш Email"
                            value="{{ old('email') }}">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
+                    @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" name="password" class="form-control" placeholder="Ваш пароль">
+                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Ваш пароль">
+
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
+                    @error('password')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="input-group mb-3">
                     <input type="password" name="password_confirmation" class="form-control"
